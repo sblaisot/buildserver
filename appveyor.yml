@@ -17,6 +17,14 @@ environment:
     - platform: x86
 matrix:
   fast_finish: false     # set this flag to true to immediately finish build once one of the jobs fails.
+install:
+ - cd %TEMP%
+ - echo *** Downloading and installing ASIOSDK
+ - curl -fsS -L -o asiosdk2.3.zip http://www.steinberg.net/sdk_downloads/asiosdk2.3.zip
+ - cd c:\projects\mixxx-buildserver\build\pa_stable_v19_20140130\src\hostapi\asio
+ - 7z x %TEMP%\asiosdk2.3.zip
+ - rename ASIOSDK2.3 ASIOSDK
+ - cd c:\projects\mixxx-buildserver
 build_script:
   - build_environment.bat %platform% %configuration%
 test: off
